@@ -9,4 +9,6 @@ public interface PeopleService {
     public Person create(Person person);
 
     public List<Person> findAll();
+
+    public void delete(Long id);
 }

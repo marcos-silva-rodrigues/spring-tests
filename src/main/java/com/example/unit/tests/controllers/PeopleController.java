@@ -28,5 +28,11 @@ public class PeopleController {
         return this.peopleService.findAll();
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        this.peopleService.delete(id);
+    }
+
+
 
 }
