@@ -13,8 +13,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,5 +46,21 @@ public class PersonTest {
                 .content(mockPersonJson))
                 .andExpect(status().isOk()).andExpect(content().json(mockPersonJson));
     }
+
+    @Test
+    public void findAll() throws Exception {
+        Person fulano = new Person((long) 1, "Fulanao", 28);
+        List<Person> mockPeople = Arrays.asList(fulano);
+
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String mockPeopleJson = ow.writeValueAsString(mockPeople);
+
+        when(peopleService.findAll()).thenReturn(mockPeople);
+
+        this.mockMvc.perform(get("/people").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is(200))
+                .andExpect(content().json(mockPeopleJson));
+    }
+
 
 }
