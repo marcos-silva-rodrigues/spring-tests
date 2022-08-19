@@ -47,6 +47,8 @@ public class PersonTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(mockPersonJson))
                 .andExpect(status().isOk()).andExpect(content().json(mockPersonJson));
+
+        verify(peopleService).create(any(Person.class));
     }
 
     @Test
