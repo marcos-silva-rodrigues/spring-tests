@@ -70,5 +70,19 @@ public class PersonTest {
                 .andExpect(status().is(200));
     }
 
+    @Test
+    public void createNewPersonAndFail() throws Exception {
+        Person fulano = new Person((long) 1, "", 28);
+
+        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        String mockPersonJson = ow.writeValueAsString(fulano);
+
+        when(peopleService.create(any(Person.class))).thenReturn(fulano);
+        this.mockMvc.perform(post("/people")
+                .contentType(MediaType.APPLICATION_JSON)
+                        .content(mockPersonJson))
+                .andExpect(status().isBadRequest());
+    }
+
 
 }

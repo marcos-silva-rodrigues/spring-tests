@@ -5,6 +5,7 @@ import com.example.unit.tests.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class PeopleController {
     }
 
     @PostMapping
-    public Person create(@RequestBody Person person) {
+    public Person create(@RequestBody @Valid Person person) {
         return this.peopleService.create(person);
     }
 

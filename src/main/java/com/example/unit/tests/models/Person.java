@@ -1,6 +1,7 @@
 package com.example.unit.tests.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "people")
@@ -12,6 +13,7 @@ public class Person {
     private Long id;
 
     @Column
+    @NotEmpty
     private String name;
 
     @Column
