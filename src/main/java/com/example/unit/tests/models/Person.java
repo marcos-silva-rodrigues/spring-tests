@@ -25,6 +25,12 @@ public class Person {
         this.age = age;
     }
 
+    public Person(Long id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+
     public long getId() {
         return id;
     }
