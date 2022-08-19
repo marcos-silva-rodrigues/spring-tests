@@ -4,6 +4,8 @@ import com.example.unit.tests.models.Person;
 import com.example.unit.tests.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class PeopleServiceImp implements PeopleService {
 
     @Autowired
@@ -16,5 +18,10 @@ public class PeopleServiceImp implements PeopleService {
     @Override
     public Person create(Person person) {
         return this.personRepository.save(person);
+    }
+
+    @Override
+    public List<Person> findAll() {
+        return this.personRepository.findAll();
     }
 }

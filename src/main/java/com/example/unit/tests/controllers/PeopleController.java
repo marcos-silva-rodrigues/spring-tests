@@ -3,10 +3,9 @@ package com.example.unit.tests.controllers;
 import com.example.unit.tests.models.Person;
 import com.example.unit.tests.services.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/people")
@@ -23,5 +22,11 @@ public class PeopleController {
     public Person create(@RequestBody Person person) {
         return this.peopleService.create(person);
     }
+
+    @GetMapping
+    public List<Person> findAll() {
+        return this.peopleService.findAll();
+    }
+
 
 }
